@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение данных клиента</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style2.css}">
+</head>
+<body>
+
+<form action="#" th:action="@{/book-update}" th:object="${book}" method="post">
+    <table>
+        <tr>
+            <td th:align="right">
+                <label for="id">Номер книги в базе</label>
+            </td>
+            <td>
+                <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input readonly type="hidden" th:field="*{client}" id="client" placeholder="ID">
+            </td>
+        </tr>
+        <tr>
+            <td th:align="right">
+                <label for="title">Название</label>
+            </td>
+            <td>
+                <input type="text" th:field="*{title}" id="title" placeholder="Название">
+            </td>
+        </tr>
+
+        <!--            -->
+        <tr>
+            <td th:align="right">
+                <label for="publishingYear">Год издания</label>
+            </td>
+            <td>
+                <input type="number" th:field="*{publishingYear}" id="publishingYear" placeholder="Год издания">
+            </td>
+        </tr>
+        <tr>
+            <td th:align="right">
+                <label for="author">Автор</label>
+            </td>
+            <td>
+                <input type="text" th:field="*{author}" id="author" placeholder="Автор">
+            </td>
+        </tr>
+        <tr>
+            <td th:align="right">
+                <label for="genre">Жанр</label>
+            </td>
+            <td>
+                <input type="text" th:field="*{genre}" id="genre" placeholder="Жанр">
+            </td>
+        </tr>
+        <tr>
+            <td th:align="right">
+                <label for="publishingHouse">Издательство</label>
+            </td>
+            <td>
+                <input type="text" th:field="*{publishingHouse}" id="publishingHouse" placeholder="Издательство">
+            </td>
+
+        </tr>
+        <tr>
+            <td th:align="right">
+                <label for="dateOfIssue">Дата выдачи</label>
+            </td>
+            <td>
+                <input type="text" th:field="*{dateOfIssue}" id="dateOfIssue" placeholder="Дата выдачи">
+            </td>
+        </tr>
+        <!--            -->
+        <tr>
+            <td th:align="right">
+                <label for="dateOfDelivery">Дата сдачи</label>
+            </td>
+            <td>
+                <input type="date" th:field="*{dateOfDelivery}" id="dateOfDelivery" placeholder="Last Name">
+            </td>
+            <td>
+                <input type="submit" value="Изменить данные">
+            </td>
+        </tr>
+    </table>
+</form>
+<br>
+</body>
+</html>

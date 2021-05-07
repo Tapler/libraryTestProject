@@ -1,0 +1,36 @@
+body {
+    margin: 0.1%;
+    padding: 0;
+    background: #CEF6F5;
+}
+
+.tg {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tg td {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding: 12px 16px;
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+    word-break: normal;
+    border-color: #ccc;
+    color: #333;
+}
+
+.tg th {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 17px;
+    padding: 10px 5px;
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+    word-break: normal;
+    border-color: #ccc;
+    color: #333;
+    background-color: #b38409;
+}

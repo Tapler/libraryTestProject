@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Clients</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style2.css}">
+
+</head>
+<body>
+        <h2 align="center">Список всех клиентов</h2>
+        <table class="tg">
+            <thead>
+            <tr>
+                <th width="250">Номер читательского билета</th>
+                <th>ФИО</th>
+                <th width="400">Номер телефона</th>
+                <th width="300">Действия с данными</th>
+            </tr>
+            </thead>
+            <tbody th:if="${!clients.isEmpty()}">
+            <tr th:each="client : ${clients}">
+                <td th:text="${client.formatTicket()}"></td>
+                <td><a th:href="'/clients/'+${client.getId()}" th:text="${client.getName()}"></a></td>
+                <td th:text="${client.getPhoneNumber()}"></td>
+                <td>
+                    <a th:href="'/client-update/'+${client.getId()}">Изменить данные о клиенте</a>
+                    <br>
+                    <a th:href="'/client-delete/'+${client.getId()}">Удалить клиента (если нет несданных книг)</a>
+                </td>
+            </tr>
+            </tbody>
+            <tbody th:unless="${!clients.isEmpty()}">
+            <tr>Клиентов нет</tr>
+        </table>
+
+<form action="/clients/new_client" method="post" name="contact_form">
+    <table>
+        <h2>Добавление нового клиента</h2>
+        <tr>
+            <td>
+                <label> ФИО клиента </label>
+            </td>
+            <td>
+                <input th:for="${new_client.getName()}" type="text" name="name" placeholder="Введите ФИО" required/>
+            </td>
+            <td>
+                <label> Телефон </label>
+            </td>
+            <td>
+                <input th:for="${new_client.getPhoneNumber()}" type="text" maxlength="200" name="phoneNumber"
+                       placeholder="Введите телефон" required/>
+            </td>
+            <td>
+                <button class="submit" type="submit">Добавить клиента</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<br>
+</body>
+</html>

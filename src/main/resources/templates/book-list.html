@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о выданных книгах</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style2.css}">
+</head>
+<body>
+<a href="/clients">Вернуться к списку клиентов</a>
+<h2 align="center" th:text="'Информация по клиенту: '+${client.getName()}"></h2>
+<h3 align="center" th:text="'Номер читательского билета: '+${client.formatTicket()}"></h3>
+<h3 align="center" th:text="'Телефон: '+${client.getPhoneNumber()}"></h3>
+
+
+<h2 align="center">Выданные книги</h2>
+<table class="tg">
+    <thead>
+    <tr>
+        <th width="100">Номер книги в базе</th>
+        <th width=20%>Название</th>
+        <th width="150">Год издания</th>
+        <th width="400">Автор</th>
+        <th width="300">Жанр</th>
+        <th width="200">Издательство</th>
+        <th width="150">Дата выдачи</th>
+        <th width="150">Дата сдачи</th>
+        <th width="350">Действия с данными</th>
+    </tr>
+    </thead>
+    <tbody th:if="${!client.getBookList().isEmpty()}">
+    <tr th:each="book:${client.getBookList()}">
+        <td th:utext="${book.getId()}"></td>
+        <td th:utext="${book.getTitle()}"></td>
+        <td th:utext="${book.getPublishingYear()}"></td>
+        <td th:utext="${book.getAuthor()}"></td>
+        <td th:utext="${book.getGenre()}"></td>
+        <td th:utext="${book.getPublishingHouse()}"></td>
+        <td th:utext="${book.getDateOfIssue()}"></td>
+        <td th:utext="${book.getDateOfDelivery()}"></td>
+        <td>
+            <a th:href="'/clients/'+${client.getId()}+'/book='+${book.getId()}+'/delete'">Удалить</a>
+            <br>
+            <a th:href="'/book-update/'+${book.getId()}">Изменить данные / Добавить дату сдачи</a>
+        </td>
+    </tr>
+    </tbody>
+    <tbody th:unless="${!client.getBookList().isEmpty()}">
+    <tr>У клиента нет взятых книг</tr>
+    </tbody>
+</table>
+
+
+<form th:action="'/clients/'+${client.getId()}+'/new_book'" method="post">
+    <table>
+        <h2>Добавление новой книги</h2>
+        <tr>
+            <td>
+                <label> Название </label>
+            </td>
+            <td>
+                <input th:for="${book.getTitle()}" type="text" name="title" placeholder="Введите название книги"
+                       required/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label> Год издания </label>
+            </td>
+            <td>
+                <input th:for="${book.getPublishingYear()}" type="number" name="publishingYear"
+                       placeholder="Введите год издания" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label> Автор </label>
+            </td>
+            <td>
+                <input th:for="${book.getAuthor()}" type="text" name="author"
+                       placeholder="Введите автора" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label> Жанр </label>
+            </td>
+            <td>
+                <input th:for="${book.getGenre()}" type="text" name="genre"
+                       placeholder="Введите жанр" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label> Издательство </label>
+            </td>
+            <td>
+                <input th:for="${book.getPublishingHouse()}" type="text" name="publishingHouse"
+                       placeholder="Введите издательство" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label> Дата выдачи </label>
+            </td>
+            <td>
+                <input th:for="${book.getDateOfIssue()}" type="date" name="dateOfIssue"
+                       placeholder="Введите дату выдачи" required/>
+            </td>
+
+            <td>
+                <button class="submit" type="submit">Добавить книгу</button>
+            </td>
+
+        </tr>
+    </table>
+</form>
+<br>
+</body>
+</html>
