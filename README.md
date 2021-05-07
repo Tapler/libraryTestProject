@@ -2,9 +2,10 @@
 
 2. Сборка и запуск:
 - Сборка проекта mvn clean install
- 
+
+Для запуска программы необходима jdk 11, PostrgreSQL
 - Запуск программы:
- 
+
      Из IDE дефолтными конфигурациями (LibraryTestProjectApplication)
      
      из CMD:
